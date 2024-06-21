@@ -38,8 +38,9 @@ echo $passwrd | sudo apt-get update -y
 echo $passwrd | sudo NEEDRESTART_MODE=a apt-get upgrade -y
 read -p "Now, we'll install some prerequisites. Please hit Enter to start..."
 echo $passwrd | sudo -S NEEDRESTART_MODE=a apt -qq install nano git curl -y
-echo $passwrd | sudo -S NEEDRESTART_MODE=a apt -qq install python3-dev python3.10-dev python3-pip -y
-echo $passwrd | sudo -S NEEDRESTART_MODE=a apt -qq install python3.10-venv -y
+echo $passwrd | sudo -S NEEDRESTART_MODE=a apt -qq install python3-dev python3.12-dev python3-pip -y
+echo $passwrd | sudo -S NEEDRESTART_MODE=a apt -qq install python3.12-venv -y
+echo $passwrd | sudo -S NEEDRESTART_MODE=a apt -qq install pipx -y
 echo $passwrd | sudo -S NEEDRESTART_MODE=a apt -qq install cron software-properties-common mariadb-client mariadb-server -y
 echo $passwrd | sudo -S NEEDRESTART_MODE=a apt -qq install supervisor redis-server xvfb libfontconfig wkhtmltopdf -y
 read -p "Let's configure your Mariadb server. Please hit Enter to start..."
@@ -68,7 +69,7 @@ nvm install 18
 echo $passwrd | sudo -S NEEDRESTART_MODE=a apt-get install npm -y
 echo $passwrd | sudo -S npm install -g yarn
 read -p "well, now we are ready to install frappe. Reay? :-) Hit Enter..."
-echo $passwrd | sudo -S pip3 install frappe-bench
+echo $passwrd | sudo -S pipx install frappe-bench
 bench init --frappe-branch version-15 frappe-bench
 cd frappe-bench/
 chmod -R o+rx /home/$USER/
@@ -106,7 +107,7 @@ fi
 read -p "Good! Now, is your server ment for production? (Y/n) " ans
 if [ $ans = "n" ]; then exit 0; fi 
 ans=""
-echo $passwrd | sudo -S sed -i -e 's/include:/include_tasks:/g' /usr/local/lib/python3.10/dist-packages/bench/playbooks/roles/mariadb/tasks/main.yml
+echo $passwrd | sudo -S sed -i -e 's/include:/include_tasks:/g' /usr/local/lib/python3.12/dist-packages/bench/playbooks/roles/mariadb/tasks/main.yml
 yes | sudo bench setup production $USER
 FILE="/etc/supervisor/supervisord.conf"
 SEARCH_PATTERN="chown=$USER:$USER"
