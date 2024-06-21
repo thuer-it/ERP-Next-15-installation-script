@@ -10,7 +10,7 @@ usermod -aG sudo [frappe-user]
 and then log in using the [frapp-user] above. the rest is to execute:
 
 ```
-wget https://raw.githubusercontent.com/abrefael/ERP-Next-15-installation-script/main/erpNext15install.sh
+wget https://raw.githubusercontent.com/thuer-it/ERP-Next-15-installation-script/main/erpNext15install.sh
 sudo chmod +x erpNext15install.sh
 ./erpNext15install.sh
 ```
